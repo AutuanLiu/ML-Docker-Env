@@ -11,8 +11,7 @@ ARG KERAS_VERSION=1.2.0
 ARG ANACONDA3_VERSION=5.0.1
 
 RUN apt-get update --fix-missing && \
-    apt-get install -y \
-    apt-utils \
+    apt-get install -y --fix-missing \
     curl \
     grep \
     sed \
@@ -53,11 +52,11 @@ RUN pip install https://cntk.ai/PythonWheel/CPU-Only/cntk-2.3-cp35-cp35m-linux_x
 # Install TensorFlow
 #RUN	pip install --upgrade \
 # 		https://storage.googleapis.com/tensorflow/linux/${TENSORFLOW_ARCH}/tensorflow-${TENSORFLOW_VERSION}-cp34-cp34m-linux_x86_64.whl
-RUN conda install tensorflow
+RUN conda install -quiet --yes tensorflow
 
 # Install pytorch
 # http://pytorch.org/
-RUN conda install pytorch torchvision -c soumith
+RUN conda install --quiet --yes pytorch torchvision -c soumith
 
 # Install Keras
 RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
