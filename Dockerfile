@@ -7,8 +7,6 @@ USER root
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-ARG TENSORFLOW_VERSION=0.12.1 
-ARG TENSORFLOW_ARCH=cpu
 ARG KERAS_VERSION=1.2.0
 ARG ANACONDA3_VERSION=5.0.1
 
@@ -50,23 +48,23 @@ ENV PATH /opt/conda/bin:$PATH
 
 # Install CNTK
 # https://docs.microsoft.com/en-us/cognitive-toolkit/setup-windows-python?tabs=cntkpy23
-RUN pip3 install --upgrade \
-		https://cntk.ai/PythonWheel/CPU-Only/cntk-${CNTK_VERSION}-cp36-cp36m-linux_x86_64.whl
+RUN pip install https://cntk.ai/PythonWheel/CPU-Only/cntk-2.3-cp35-cp35m-linux_x86_64.whl
 
 # Install TensorFlow
-RUN	pip3 install --upgrade \
- 		https://storage.googleapis.com/tensorflow/linux/${TENSORFLOW_ARCH}/tensorflow-${TENSORFLOW_VERSION}-cp34-cp34m-linux_x86_64.whl
+#RUN	pip install --upgrade \
+# 		https://storage.googleapis.com/tensorflow/linux/${TENSORFLOW_ARCH}/tensorflow-${TENSORFLOW_VERSION}-cp34-cp34m-linux_x86_64.whl
+RUN conda install tensorflow
 
 # Install pytorch
 # http://pytorch.org/
 RUN conda install pytorch torchvision -c soumith
 
 # Install Keras
-RUN pip3 --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
+RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
 
 # Install tangent
 # https://github.com/google/tangent
-RUN pip3 install tangent
+RUN pip install tangent
 
 # Install OpenCV
 RUN git clone --depth 1 https://github.com/opencv/opencv.git /root/opencv && \
