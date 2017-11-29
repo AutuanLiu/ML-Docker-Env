@@ -47,12 +47,12 @@ ENV PATH /opt/conda/bin:$PATH
 
 # Install CNTK
 # https://docs.microsoft.com/en-us/cognitive-toolkit/setup-windows-python?tabs=cntkpy23
-RUN pip install https://cntk.ai/PythonWheel/CPU-Only/cntk-2.3-cp35-cp35m-linux_x86_64.whl
+# RUN pip install https://cntk.ai/PythonWheel/CPU-Only/cntk-2.3-cp35-cp35m-linux_x86_64.whl
 
 # Install TensorFlow
 #RUN	pip install --upgrade \
 # 		https://storage.googleapis.com/tensorflow/linux/${TENSORFLOW_ARCH}/tensorflow-${TENSORFLOW_VERSION}-cp34-cp34m-linux_x86_64.whl
-RUN conda install -quiet --yes tensorflow
+RUN conda install tensorflow
 
 # Install pytorch
 # http://pytorch.org/
