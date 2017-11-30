@@ -8,7 +8,7 @@ USER root
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 ARG KERAS_VERSION=1.2.0
-ARG ANACONDA3_VERSION=5.0.1
+    ANACONDA3_VERSION=5.0.1
 
 RUN apt-get update --fix-missing && \
     apt-get install -y --fix-missing \
@@ -40,7 +40,8 @@ RUN apt-get update --fix-missing && \
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-    rm ~/anaconda.sh
+    rm ~/anaconda.sh && \
+    conda update --all
 
 # Install Tini
 # https://github.com/krallin/tini
