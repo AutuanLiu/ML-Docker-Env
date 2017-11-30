@@ -7,7 +7,7 @@ USER root
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-ARG KERAS_VERSION=1.2.0
+ARG KERAS_VERSION=1.2.0 \
     ANACONDA3_VERSION=5.0.1
 
 RUN apt-get update --fix-missing && \
