@@ -47,7 +47,7 @@ RUN apt-get update --fix-missing && \
 
 # https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/Dockerfile
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
+    wget -nv https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 
@@ -63,19 +63,19 @@ ENV PATH /opt/conda/bin:$PATH
 
 # Install TensorFlow
 # https://anaconda.org/conda-forge/tensorflow
-RUN conda install --yes -c conda-forge tensorflow
+RUN conda install -q -y -c conda-forge tensorflow
 
 # Install pytorch
 # http://pytorch.org/
 # RUN conda install pytorch torchvision -c soumith
-RUN conda install --yes pytorch torchvision -c soumith
+RUN conda install -q -y pytorch torchvision -c soumith
 
 # Install Keras
 RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
 
 # Install tangent
 # https://github.com/google/tangent
-RUN pip install tangent
+RUN pip install -q tangent
 
 # Install OpenCV
 # https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html
@@ -91,7 +91,7 @@ RUN git clone --depth 1 https://github.com/opencv/opencv.git /root/opencv && \
 
 # R packages including IRKernel which gets installed globally.
 RUN conda config --system --append channels r && \
-    conda install --quiet --yes \
+    conda install -q -y \
     'rpy2=2.8*' \
     'r-base=3.3.2' \
     'r-irkernel=0.7*' \

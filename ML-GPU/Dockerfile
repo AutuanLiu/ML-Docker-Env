@@ -47,7 +47,7 @@ RUN apt-get update --fix-missing && \
 
 # https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/Dockerfile
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
+    wget -nv https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 
@@ -63,19 +63,19 @@ ENV PATH /opt/conda/bin:$PATH
 
 # Install TensorFlow
 # https://anaconda.org/anaconda/tensorflow-gpu
-RUN conda install --yes -c anaconda tensorflow-gpu
+RUN conda install -q -y -c anaconda tensorflow-gpu
 
 # Install pytorch
 # http://pytorch.org/
 # RUN conda install pytorch torchvision -c soumith
-RUN conda install --yes pytorch torchvision cuda80  -c soumith
+RUN conda install -q -y pytorch torchvision cuda80  -c soumith
 
 # Install Keras
 RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
 
 # Install tangent
 # https://github.com/google/tangent
-RUN pip install tangent
+RUN pip install -q tangent
 
 # Install OpenCV
 # https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html
