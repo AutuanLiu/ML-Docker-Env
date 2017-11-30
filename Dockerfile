@@ -78,8 +78,7 @@ RUN git clone --depth 1 https://github.com/opencv/opencv.git /root/opencv && \
 	make -j"$(nproc)"  && \
 	make install && \
 	ldconfig && \
-	echo 'ln /dev/null /dev/raw1394' >> ~/.bashrc && \
-    source ~/.bashrc
+	echo 'ln /dev/null /dev/raw1394' >> ~/.bashrc
 
 # R packages including IRKernel which gets installed globally.
 RUN conda config --system --append channels r && \
