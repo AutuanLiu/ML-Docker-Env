@@ -87,7 +87,8 @@ RUN git clone --depth 1 https://github.com/opencv/opencv.git /root/opencv && \
 	make -j"$(nproc)"  && \
 	make install && \
 	ldconfig && \
-	echo 'ln /dev/null /dev/raw1394' >> ~/.bashrc
+	echo 'ln /dev/null /dev/raw1394' >> ~/.bashrc && \
+    rm -rf /root/opencv
 
 # Set up notebook config
 COPY jupyter_notebook_config.py /root/.jupyter/
