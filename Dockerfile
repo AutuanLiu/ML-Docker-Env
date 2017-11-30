@@ -23,7 +23,6 @@ RUN apt-get update --fix-missing && \
     libxrender1 \
     git \
     dpkg \
-    build-essential \
     mercurial \
     subversion && \
     apt-get clean && \
