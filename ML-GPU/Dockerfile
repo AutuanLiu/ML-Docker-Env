@@ -31,6 +31,15 @@ RUN apt-get update --fix-missing && \
     libavformat-dev \
     libswscale-dev \
     mercurial \
+    python-dev \
+    python-numpy \
+    libtbb2 \
+    libtbb-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff-dev \
+    libjasper-dev \
+    libdc1394-22-dev \
     subversion && \
     apt-get clean && \
 	apt-get autoremove && \

@@ -27,6 +27,15 @@ RUN apt-get update --fix-missing && \
     cmake \
     libgtk2.0-dev \
     pkg-config \
+    python-dev \
+    python-numpy \
+    libtbb2 \
+    libtbb-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff-dev \
+    libjasper-dev \
+    libdc1394-22-dev \
     libavcodec-dev \
     libavformat-dev \
     libswscale-dev \
