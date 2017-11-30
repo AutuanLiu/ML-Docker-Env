@@ -24,6 +24,13 @@ RUN apt-get update --fix-missing && \
     libxrender1 \
     git \
     dpkg \
+    build-essential \
+    cmake \
+    libgtk2.0-dev \
+    pkg-config \
+    libavcodec-dev \
+    libavformat-dev \
+    libswscale-dev \
     mercurial \
     subversion && \
     apt-get clean && \
@@ -56,6 +63,7 @@ RUN conda install tensorflow
 
 # Install pytorch
 # http://pytorch.org/
+# RUN conda install pytorch torchvision -c soumith
 RUN conda install --quiet --yes pytorch torchvision -c soumith
 
 # Install Keras
@@ -66,6 +74,7 @@ RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_V
 RUN pip install tangent
 
 # Install OpenCV
+# https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html
 RUN git clone --depth 1 https://github.com/opencv/opencv.git /root/opencv && \
 	cd /root/opencv && \
 	mkdir build && \
