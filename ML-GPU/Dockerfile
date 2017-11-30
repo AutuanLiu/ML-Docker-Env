@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 
 LABEL maintainer="autuanliu <autuanliu@163.com>"
 
@@ -53,13 +53,13 @@ RUN TINI_VERSION=`curl https://github.com/krallin/tini/releases/latest | grep -o
 ENV PATH /opt/conda/bin:$PATH
 
 # Install TensorFlow
-# https://anaconda.org/conda-forge/tensorflow
-RUN conda install --yes -c conda-forge tensorflow
+# https://anaconda.org/anaconda/tensorflow-gpu
+RUN conda install --yes -c anaconda tensorflow-gpu
 
 # Install pytorch
 # http://pytorch.org/
 # RUN conda install pytorch torchvision -c soumith
-RUN conda install --quiet --yes pytorch torchvision -c soumith
+RUN conda install --quiet --yes pytorch torchvision cuda80  -c soumith
 
 # Install Keras
 RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
@@ -78,33 +78,7 @@ RUN git clone --depth 1 https://github.com/opencv/opencv.git /root/opencv && \
 	make -j"$(nproc)"  && \
 	make install && \
 	ldconfig && \
-	echo 'ln /dev/null /dev/raw1394' >> ~/.bashrc && \
-    source ~/.bashrc
-
-# R packages including IRKernel which gets installed globally.
-RUN conda config --system --append channels r && \
-    conda install --quiet --yes \
-    'rpy2=2.8*' \
-    'r-base=3.3.2' \
-    'r-irkernel=0.7*' \
-    'r-plyr=1.8*' \
-    'r-dplyr=0.5*' \
-    'r-forecast=6.2*' \
-    'r-ggplot2=2.2*' \
-    'r-matrix=1.2*' \
-    'r-devtools=1.12*' \
-    'r-tidyverse=1.0*' \
-    'r-shiny=0.14*' \
-    'r-rmarkdown=1.2*' \
-    'r-forecast=7.3*' \
-    'r-rsqlite=1.1*' \
-    'r-reshape2=1.4*' \
-    'r-nycflights13=0.2*' \
-    'r-caret=6.0*' \
-    'r-rcurl=1.95*' \
-    'r-crayon=1.3*' \
-    'r-randomforest=4.6*' && \
-    conda clean -tipsy
+	echo 'ln /dev/null /dev/raw1394' >> ~/.bashrc
 
 # Set up notebook config
 COPY jupyter_notebook_config.py /root/.jupyter/
