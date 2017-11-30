@@ -24,22 +24,7 @@ RUN apt-get update --fix-missing && \
     git \
     dpkg \
     build-essential \
-    cmake \
-    libgtk2.0-dev \
-    pkg-config \
-    libavcodec-dev \
-    libavformat-dev \
-    libswscale-dev \
     mercurial \
-    python-dev \
-    python-numpy \
-    libtbb2 \
-    libtbb-dev \
-    libjpeg-dev \
-    libpng-dev \
-    libtiff-dev \
-    libjasper-dev \
-    libdc1394-22-dev \
     subversion && \
     apt-get clean && \
 	apt-get autoremove && \
@@ -77,19 +62,31 @@ RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_V
 # https://github.com/google/tangent
 RUN pip install -q tangent
 
-# Install OpenCV
-# https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html
-RUN git clone --depth 1 https://github.com/opencv/opencv.git /root/opencv && \
-	cd /root/opencv && \
-	mkdir build && \
-	cd build && \
-	cmake -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON -DWITH_XINE=ON -DBUILD_EXAMPLES=ON .. && \
-	make -j"$(nproc)"  && \
-	make install && \
-	ldconfig && \
-	echo 'ln /dev/null /dev/raw1394' >> ~/.bashrc && \
-    rm -rf /root/opencv
-
+# R packages including IRKernel which gets installed globally.
+RUN conda config --system --append channels r && \
+    conda install -q -y \
+    'rpy2=2.8*' \
+    'r-base=3.3.2' \
+    'r-irkernel=0.7*' \
+    'r-plyr=1.8*' \
+    'r-dplyr=0.5*' \
+    'r-forecast=6.2*' \
+    'r-ggplot2=2.2*' \
+    'r-matrix=1.2*' \
+    'r-devtools=1.12*' \
+    'r-tidyverse=1.0*' \
+    'r-shiny=0.14*' \
+    'r-rmarkdown=1.2*' \
+    'r-forecast=7.3*' \
+    'r-rsqlite=1.1*' \
+    'r-reshape2=1.4*' \
+    'r-nycflights13=0.2*' \
+    'r-caret=6.0*' \
+    'r-rcurl=1.95*' \
+    'r-crayon=1.3*' \
+    'r-randomforest=4.6*' && \
+    conda clean -tipsy
+    
 # Set up notebook config
 COPY jupyter_notebook_config.py /root/.jupyter/
 

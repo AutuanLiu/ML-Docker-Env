@@ -24,21 +24,6 @@ RUN apt-get update --fix-missing && \
     git \
     dpkg \
     build-essential \
-    cmake \
-    libgtk2.0-dev \
-    pkg-config \
-    python-dev \
-    python-numpy \
-    libtbb2 \
-    libtbb-dev \
-    libjpeg-dev \
-    libpng-dev \
-    libtiff-dev \
-    libjasper-dev \
-    libdc1394-22-dev \
-    libavcodec-dev \
-    libavformat-dev \
-    libswscale-dev \
     mercurial \
     subversion && \
     apt-get clean && \
@@ -76,19 +61,6 @@ RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_V
 # Install tangent
 # https://github.com/google/tangent
 RUN pip install -q tangent
-
-# Install OpenCV
-# https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html
-RUN git clone --depth 1 https://github.com/opencv/opencv.git /root/opencv && \
-	cd /root/opencv && \
-	mkdir build && \
-	cd build && \
-	cmake -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON -DWITH_XINE=ON -DBUILD_EXAMPLES=ON .. && \
-	make -j"$(nproc)"  && \
-	make install && \
-	ldconfig && \
-	echo 'ln /dev/null /dev/raw1394' >> ~/.bashrc && \
-    rm -rf /root/opencv
 
 # R packages including IRKernel which gets installed globally.
 RUN conda config --system --append channels r && \
