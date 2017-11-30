@@ -47,7 +47,7 @@ RUN apt-get update --fix-missing && \
 
 # https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/Dockerfile
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
+    wget https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 
@@ -68,7 +68,7 @@ RUN conda install --yes -c conda-forge tensorflow
 # Install pytorch
 # http://pytorch.org/
 # RUN conda install pytorch torchvision -c soumith
-RUN conda install --quiet --yes pytorch torchvision -c soumith
+RUN conda install --yes pytorch torchvision -c soumith
 
 # Install Keras
 RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
