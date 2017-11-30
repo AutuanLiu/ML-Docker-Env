@@ -35,7 +35,7 @@ RUN apt-get update --fix-missing && \
     apt-get clean && \
 	apt-get autoremove && \
 	rm -rf /var/lib/apt/lists/* 
-	
+
 # https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/Dockerfile
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
@@ -83,7 +83,8 @@ RUN git clone --depth 1 https://github.com/opencv/opencv.git /root/opencv && \
 	make -j"$(nproc)"  && \
 	make install && \
 	ldconfig && \
-	echo 'ln /dev/null /dev/raw1394' >> ~/.bashrc
+	echo 'ln /dev/null /dev/raw1394' >> ~/.bashrc && \
+    source ~/.bashrc
 
 # R packages including IRKernel which gets installed globally.
 RUN conda config --system --append channels r && \
