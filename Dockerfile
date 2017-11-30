@@ -1,6 +1,5 @@
 FROM ubuntu:16.04
 
-# https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/Dockerfile
 LABEL maintainer="autuanliu <autuanliu@163.com>"
 
 USER root
@@ -36,12 +35,12 @@ RUN apt-get update --fix-missing && \
     apt-get clean && \
 	apt-get autoremove && \
 	rm -rf /var/lib/apt/lists/* 
-
+	
+# https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/Dockerfile
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-    rm ~/anaconda.sh && \
-    conda update --all
+    rm ~/anaconda.sh
 
 # Install Tini
 # https://github.com/krallin/tini
