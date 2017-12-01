@@ -14,6 +14,7 @@ RUN apt-get update && \
     grep \
     sed \
     wget \ 
+    tmux \
     bzip2 \
     ca-certificates \
     sudo \

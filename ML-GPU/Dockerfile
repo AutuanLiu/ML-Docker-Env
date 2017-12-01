@@ -13,6 +13,7 @@ RUN apt-get update --fix-missing && \
     curl \
     grep \
     sed \
+    tmux \
     wget \ 
     bzip2 \
     ca-certificates \
