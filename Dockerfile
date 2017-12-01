@@ -48,7 +48,8 @@ RUN wget -q https://github.com/krallin/tini/releases/download/v0.10.0/tini && \
 RUN useradd -m -s /bin/bash -N -u 1000 autuanliu
 
 ENV PATH=/opt/conda/bin:$PATH \
-    HOME=/home/autuanliu
+    HOME=/home/autuanliu \
+    SHARE=/home/autuanliu/shareFolder
     
 # Install anaconda as autuanliu and check the md5 sum provided on the download site
 # https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/Dockerfile
@@ -94,8 +95,7 @@ RUN conda config --system --append channels r && \
     conda clean -tipsy
 
 RUN chown -R autuanliu:100 /opt/conda && \
-    mkdir ${HOME}/work && \
-    chown -R autuanliu:100 ${HOME}/work
+    chown -R autuanliu:100 $SHARE
 
 # Expose Ports for TensorBoard (6006), Ipython (8888)
 EXPOSE 6006 8888
