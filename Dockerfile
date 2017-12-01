@@ -107,10 +107,10 @@ ENTRYPOINT ["tini", "--"]
 CMD [ "/bin/bash" ]
 
 # Add local files as late as possible to avoid cache busting
-COPY jupyter_notebook_config.py /etc/jupyter/
+COPY ./ML-GPU/jupyter_notebook_config.py /etc/jupyter/
 
 # Jupyter has issues with being run directly: https://github.com/ipython/ipython/issues/7062
-COPY run_jupyter.sh ${HOME}
+COPY ./ML-GPU/run_jupyter.sh ${HOME}
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER autuanliu
