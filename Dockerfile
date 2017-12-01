@@ -71,11 +71,7 @@ RUN conda install -q -y pytorch torchvision -c soumith
 RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
 
 # Install opencv
-RUN conda install -c menpo opencv3
-
-# Install tangent
-# https://github.com/google/tangent
-RUN pip install -q tangent
+RUN conda install -q -y -c menpo opencv3
 
 # R packages including IRKernel which gets installed globally.
 RUN conda config --system --append channels r && \
