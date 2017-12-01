@@ -13,7 +13,6 @@ RUN apt-get update && \
     curl \
     grep \
     sed \
-    tmux \
     wget \ 
     bzip2 \
     ca-certificates \
