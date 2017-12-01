@@ -14,6 +14,8 @@ RUN apt-get update --fix-missing && \
     grep \
     sed \
     tmux \
+    vim \
+    nano \
     wget \ 
     bzip2 \
     ca-certificates \

@@ -13,6 +13,8 @@ RUN apt-get update && \
     curl \
     grep \
     sed \
+    vim \
+    nano \
     wget \ 
     tmux \
     bzip2 \
