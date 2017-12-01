@@ -56,17 +56,11 @@ ENV PATH=/opt/conda/bin:$PATH \
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget -nv https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-    rm ~/anaconda.sh && \
-    chown autuanliu:100 /opt/conda
-
-USER autuanliu
-
-RUN chmod 777 /opt/conda && \
-    chmod 777 ${HOME}/work
+    rm ~/anaconda.sh
 
 # Install TensorFlow
 # https://anaconda.org/conda-forge/tensorflow
-RUN conda install -q -y tensorflow
+RUN conda install -q -y -c conda-forge tensorflow
 
 # Install pytorch
 # http://pytorch.org/
@@ -104,7 +98,7 @@ RUN conda config --system --append channels r && \
     'r-randomforest=4.6*' && \
     conda clean -tipsy
 
-USER root
+RUN chown autuanliu:100 /opt/conda
 
 # Expose Ports for TensorBoard (6006), Ipython (8888)
 EXPOSE 6006 8888
@@ -122,3 +116,6 @@ COPY run_jupyter.sh ${HOME}
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER autuanliu
+
+RUN chmod 777 /opt/conda && \
+    chmod 777 ${HOME}/work
