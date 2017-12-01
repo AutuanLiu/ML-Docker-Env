@@ -41,46 +41,26 @@ RUN wget -q https://github.com/krallin/tini/releases/download/v0.10.0/tini && \
     mv tini /usr/local/bin/tini && \
     chmod +x /usr/local/bin/tini
 
-# Configure environment
-ENV CONDA_DIR=/opt/conda \
-    SHELL=/bin/bash \
-    NB_USER=autuanliu \
-    NB_UID=1000 \
-    NB_GID=100 \
-    LC_ALL=en_US.UTF-8 \
-    LANG=en_US.UTF-8 \
-    LANGUAGE=en_US.UTF-8
-
-ENV PATH=$CONDA_DIR/bin:$PATH \
-    HOME=/home/$NB_USER
-
-ADD fix-permissions /usr/local/bin/fix-permissions
-
 # Create autuanliu user with UID=1000 and in the 'users' group
 # and make sure these dirs are writable by the `users` group.
-RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
-    mkdir -p $CONDA_DIR && \
-    chown $NB_USER:$NB_GID $CONDA_DIR && \
-    fix-permissions $HOME && \
-    fix-permissions $CONDA_DIR
+RUN useradd -m -s /bin/bash -N -u 1000 autuanliu && \
+    mkdir -p /opt/conda && \
+    mkdir /home/autuanliu/work && \
+    chown autuanliu:100 /opt/conda
 
 
-USER $NB_USER
-
-# Setup work directory for backward-compatibility
-RUN mkdir /home/$NB_USER/work && \
-    fix-permissions /home/$NB_USER
-
+ENV PATH=/opt/conda/bin:$PATH \
+    HOME=/home/autuanliu
 # Install anaconda as autuanliu and check the md5 sum provided on the download site
 # https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/Dockerfile
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget -nv https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
-    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
+    wget -nv https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh 
+
+USER autuanliu
+RUN  /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 
 
-
-ENV PATH /opt/conda/bin:$PATH
 
 # Install TensorFlow
 # https://anaconda.org/conda-forge/tensorflow
@@ -135,7 +115,5 @@ CMD [ "/bin/bash" ]
 COPY jupyter_notebook_config.py /etc/jupyter/
 # Jupyter has issues with being run directly: https://github.com/ipython/ipython/issues/7062
 COPY run_jupyter.sh ${HOME}
-RUN fix-permissions /etc/jupyter/
-
 # Switch back to jovyan to avoid accidental container runs as root
-USER $NB_USER
+USER autuanliu
