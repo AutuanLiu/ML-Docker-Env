@@ -46,9 +46,7 @@ RUN wget -q https://github.com/krallin/tini/releases/download/v0.10.0/tini && \
 
 # Create autuanliu user with UID=1000 and in the 'users' group
 # and make sure these dirs are writable by the `users` group.
-RUN useradd -m -s /bin/bash -N -u 1000 autuanliu && \
-    mkdir /home/autuanliu/work && \
-    chown autuanliu:100 /home/autuanliu/work
+RUN useradd -m -s /bin/bash -N -u 1000 autuanliu
 
 ENV PATH=/opt/conda/bin:$PATH \
     HOME=/home/autuanliu
@@ -75,7 +73,7 @@ RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_V
 # Install opencv
 RUN conda install -c menpo opencv3
     
-RUN chown autuanliu:100 /opt/conda
+RUN chown -R autuanliu:100 /opt/conda
 
 # Expose Ports for TensorBoard (6006), Ipython (8888)
 EXPOSE 6006 8888
@@ -94,5 +92,5 @@ COPY run_jupyter.sh ${HOME}
 # Switch back to jovyan to avoid accidental container runs as root
 USER autuanliu
 
-RUN chmod 777 /opt/conda && \
-    chmod 777 ${HOME}/work
+# RUN chmod 777 /opt/conda && \
+#     chmod 777 ${HOME}/work

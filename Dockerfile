@@ -46,9 +46,7 @@ RUN wget -q https://github.com/krallin/tini/releases/download/v0.10.0/tini && \
 
 # Create autuanliu user with UID=1000 and in the 'users' group
 # and make sure these dirs are writable by the `users` group.
-RUN useradd -m -s /bin/bash -N -u 1000 autuanliu && \
-    mkdir /home/autuanliu/work && \
-    chown -R autuanliu:100 /home/autuanliu/work
+RUN useradd -m -s /bin/bash -N -u 1000 autuanliu
 
 ENV PATH=/opt/conda/bin:$PATH \
     HOME=/home/autuanliu
