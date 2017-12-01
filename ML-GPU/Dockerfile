@@ -7,7 +7,7 @@ USER root
 ARG KERAS_VERSION=1.2.0
 ARG ANACONDA3_VERSION=5.0.1
 
-RUN apt-get update && \
+RUN apt-get update --fix-missing && \
     apt-get -yq dist-upgrade && \
     apt-get install -y --fix-missing \
     curl \
