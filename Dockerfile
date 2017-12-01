@@ -93,7 +93,9 @@ RUN conda config --system --append channels r && \
     'r-randomforest=4.6*' && \
     conda clean -tipsy
 
-RUN chown -R autuanliu:100 /opt/conda
+RUN chown -R autuanliu:100 /opt/conda && \
+    mkdir ${HOME}/work && \
+    chown -R autuanliu:100 ${HOME}/work
 
 # Expose Ports for TensorBoard (6006), Ipython (8888)
 EXPOSE 6006 8888
@@ -111,6 +113,3 @@ COPY ./ML-GPU/run_jupyter.sh ${HOME}
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER autuanliu
-
-# RUN chmod 777 /opt/conda && \
-#     chmod 777 ${HOME}/work
