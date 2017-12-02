@@ -73,7 +73,8 @@ RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_V
 
 # Install opencv
 # https://anaconda.org/conda-forge/opencv
-RUN conda install -q -y -c conda-forge opencv 
+# RUN conda install -q -y -c conda-forge opencv 
+RUN conda install -y -c menpo opencv3
 
 # R packages including IRKernel which gets installed globally.
 RUN conda config --system --append channels r && \
