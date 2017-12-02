@@ -48,8 +48,7 @@ RUN wget -q https://github.com/krallin/tini/releases/download/v0.10.0/tini && \
 RUN useradd -m -s /bin/bash -N -u 1000 autuanliu
 
 ENV PATH=/opt/conda/bin:$PATH \
-    HOME=/home/autuanliu \
-    SHARE=/home/autuanliu/shareFolder
+    HOME=/home/autuanliu
     
 # Install anaconda as autuanliu and check the md5 sum provided on the download site
 # https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/Dockerfile
@@ -94,8 +93,7 @@ RUN conda config --system --append channels r && \
     'r-randomforest=4.6*' && \
     conda clean -tipsy
 
-RUN chown -R autuanliu:100 /opt/conda && \
-    chown -R autuanliu:100 $SHARE
+RUN chown -R autuanliu:100 /opt/conda
 
 # Expose Ports for TensorBoard (6006), Ipython (8888)
 EXPOSE 6006 8888
@@ -111,5 +109,7 @@ COPY ./ML-GPU/jupyter_notebook_config.py /etc/jupyter/
 # Jupyter has issues with being run directly: https://github.com/ipython/ipython/issues/7062
 COPY ./ML-GPU/run_jupyter.sh ${HOME}
 
-# Switch back to jovyan to avoid accidental container runs as root
+# Switch back to autuanliu to avoid accidental container runs as root
 USER autuanliu
+
+RUN mkdir $HOME/share
