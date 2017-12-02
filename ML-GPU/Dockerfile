@@ -72,7 +72,8 @@ RUN conda install -q -y pytorch torchvision cuda80  -c soumith
 RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
 
 # Install opencv
-RUN conda install -c menpo opencv3
+# https://anaconda.org/conda-forge/opencv
+RUN conda install -q -y -c conda-forge opencv 
     
 RUN chown -R autuanliu:100 /opt/conda
 
