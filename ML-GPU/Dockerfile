@@ -4,9 +4,11 @@ LABEL maintainer="autuanliu <autuanliu@163.com>"
 
 USER root
 
+# Define version
 ARG KERAS_VERSION=1.2.0
 ARG ANACONDA3_VERSION=5.0.1
 
+# Install some dependencies and tools
 RUN apt-get update --fix-missing && \
     apt-get -yq dist-upgrade && \
     apt-get install -y --fix-missing \
@@ -50,7 +52,7 @@ RUN useradd -m -s /bin/bash -N -u 1000 autuanliu
 ENV PATH=/opt/conda/bin:$PATH \
     HOME=/home/autuanliu
     
-# Install anaconda as autuanliu and check the md5 sum provided on the download site
+# Install anaconda as autuanliu
 # https://github.com/ContinuumIO/docker-images/blob/master/anaconda3/Dockerfile
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget -nv https://repo.continuum.io/archive/Anaconda3-${ANACONDA3_VERSION}-Linux-x86_64.sh -O ~/anaconda.sh && \
@@ -72,9 +74,7 @@ RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_V
 # Install opencv
 RUN conda install -c menpo opencv3
     
-RUN chown -R autuanliu:100 /opt/conda && \
-    mkdir ${HOME}/work && \
-    chown -R autuanliu:100 ${HOME}/work
+RUN chown -R autuanliu:100 /opt/conda
 
 # Expose Ports for TensorBoard (6006), Ipython (8888)
 EXPOSE 6006 8888
@@ -90,5 +90,8 @@ COPY jupyter_notebook_config.py /etc/jupyter/
 # Jupyter has issues with being run directly: https://github.com/ipython/ipython/issues/7062
 COPY run_jupyter.sh ${HOME}
 
-# Switch back to jovyan to avoid accidental container runs as root
+# Switch back to autuanliu to avoid accidental container runs as root
 USER autuanliu
+
+# Define share folder
+RUN mkdir $HOME/sharef
