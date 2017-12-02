@@ -97,8 +97,6 @@ RUN conda config --system --append channels r && \
     'r-randomforest=4.6*' && \
     conda clean -tipsy
 
-RUN chown -R autuanliu:100 /opt/conda
-
 # Expose Ports for TensorBoard (6006), Ipython (8888)
 EXPOSE 6006 8888
 WORKDIR $HOME
