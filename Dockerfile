@@ -20,7 +20,6 @@ RUN apt-get update && \
     tmux \
     bzip2 \
     ca-certificates \
-    sudo \
     locales \
     fonts-liberation \
     libglib2.0-0 \
