@@ -72,8 +72,7 @@ RUN conda install -q -y pytorch torchvision cuda80  -c soumith
 RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
 
 # Install opencv
-# https://anaconda.org/conda-forge/opencv
-RUN conda install -q -y -c conda-forge opencv 
+RUN conda install -y -c menpo opencv3 
 
 # Expose Ports for TensorBoard (6006), Ipython (8888)
 EXPOSE 6006 8888
