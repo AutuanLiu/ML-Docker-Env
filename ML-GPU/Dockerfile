@@ -61,6 +61,7 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 # Install TensorFlow
 # https://anaconda.org/anaconda/tensorflow-gpu
 RUN pip install https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.4.0-cp36-cp36m-linux_x86_64.whl
+
 # Install pytorch
 # http://pytorch.org/
 # RUN conda install pytorch torchvision -c soumith
@@ -70,7 +71,7 @@ RUN conda install -q -y pytorch torchvision cuda80  -c soumith
 RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
 
 # Install opencv
-RUN conda install -y -c menpo opencv3 
+RUN pip install https://pypi.python.org/packages/f7/81/482d0525535709aac6ed06077690bc604e5db874c42f34b04dd3d601ef59/opencv_contrib_python-3.3.0.10-cp27-cp27m-manylinux1_x86_64.whl#md5=318ae50db20b08450c4285314ff63eef
 
 # Expose Ports for TensorBoard (6006), Ipython (8888)
 EXPOSE 6006 8888
