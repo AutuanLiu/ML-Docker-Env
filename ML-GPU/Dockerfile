@@ -70,9 +70,6 @@ RUN conda install -q -y pytorch torchvision cuda80  -c soumith
 # Install Keras
 RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
 
-# Install opencv
-RUN pip install https://pypi.python.org/packages/f7/81/482d0525535709aac6ed06077690bc604e5db874c42f34b04dd3d601ef59/opencv_contrib_python-3.3.0.10-cp27-cp27m-manylinux1_x86_64.whl#md5=318ae50db20b08450c4285314ff63eef
-
 # Expose Ports for TensorBoard (6006), Ipython (8888)
 EXPOSE 6006 8888
 WORKDIR $HOME
