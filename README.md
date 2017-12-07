@@ -48,6 +48,7 @@ when you create a container with the docker image, you can get:
 * seaborn
 * pillow
 * Other useful Python libraries
+* Other useful R libraries for data science
 
 If you want to add new modules of python or other libraries, you can modify the Dockerfile 
 directly or submit a issue [here](https://github.com/AutuanLiu/ML-Docker-Env/issues)
