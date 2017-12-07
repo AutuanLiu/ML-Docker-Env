@@ -10,7 +10,7 @@ pull the image I have create from [Docker Hub](https://hub.docker.com/r/autuanli
 2. [GPU Version](https://hub.docker.com/r/autuanliu/ml-docker-env-gpu/)
 
 ### Pull the image
-1. from the Docker hub
+1. from Docker hub
     * CPU-Version
 
         `docker pull autuanliu/ml-docker-env-cpu`
@@ -19,7 +19,7 @@ pull the image I have create from [Docker Hub](https://hub.docker.com/r/autuanli
 
         `docker pull autuanliu/ml-docker-env-gpu`
 
-2. from the Aliyun
+2. from Aliyun
     * CPU-Version
         
         `docker pull registry.cn-hangzhou.aliyuncs.com/autuanliu/ml-env-cpu`
@@ -54,9 +54,9 @@ If you want to add new modules of python or other libraries, you can modify the 
 directly or submit a issue [here](https://github.com/AutuanLiu/ML-Docker-Env/issues)
 
 ### Usage
-`
+```bash
 docker run -it --rm -p 8888:8888 -v your_host_work_dir:/home/autuanliu/sharef registry_name/image_name:tag
-`
+```
 
 * Notes: 
 1. TensorBoard port 6006 
@@ -74,7 +74,6 @@ These Docker images are used for learning and research related to data science a
 
 [Another repository](https://github.com/AutuanLiu/Machine-Learning-on-docker) are created to submit my learning and research. It is about Machine learning, Neural Network, data science etc. You can run all code or jupyter-notes base on this Docker image.
 
-Hope it works!
----
+----
 
-If you have any questions or suggestions about this reposity, you can submit your issues or email me. [autuanliu@163.com]()
+If you have any questions or suggestions about this reposity, you can submit your issues or email me. [autuanliu@163.com]
