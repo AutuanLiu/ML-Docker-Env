@@ -60,7 +60,7 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 
 # Install TensorFlow
 # https://anaconda.org/conda-forge/tensorflow
-RUN conda install -q -y -c conda-forge tensorflow
+RUN pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.4.0-cp36-cp36m-linux_x86_64.whl
 
 # Install pytorch
 # http://pytorch.org/

@@ -60,8 +60,7 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 
 # Install TensorFlow
 # https://anaconda.org/anaconda/tensorflow-gpu
-RUN conda install -q -y -c anaconda tensorflow-gpu
-
+RUN pip install https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.4.0-cp36-cp36m-linux_x86_64.whl
 # Install pytorch
 # http://pytorch.org/
 # RUN conda install pytorch torchvision -c soumith
