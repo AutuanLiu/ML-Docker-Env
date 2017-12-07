@@ -41,6 +41,7 @@ when you create a container with the docker image, you can get:
 * Keras
 * Anaconda
 * jupyter notebook
+* R language support
 * numpy
 * pandas
 * matplotlib
@@ -55,6 +56,11 @@ directly or submit a issue [here](https://github.com/AutuanLiu/ML-Docker-Env/iss
 `
 docker run -it --rm -p 8888:8888 -v your_host_work_dir:/home/autuanliu/sharef registry_name/image_name:tag
 `
+
+* Notes: 
+1. TensorBoard port 6006 
+2. You do not have root privileges
+3. Share folder: /home/autuanliu/sharef/
 
 * here is an example 
 
