@@ -68,7 +68,7 @@ docker run -it --rm -p 8888:8888 -v your_host_work_dir:/home/autuanliu/sharef re
 
 * here is an example 
 
-[![asciicast](https://asciinema.org/a/koioQuPhCpyUKQcvdgQ3dlVjC.png)](https://asciinema.org/a/koioQuPhCpyUKQcvdgQ3dlVjC)
+[![asciicast](https://asciinema.org/a/koioQuPhCpyUKQcvdgQ3dlVjC.png)](http://bit.ly/usage-demo)
 
 for more detail commands usage, you can visit the website: [Get Started, Part 1: Orientation and setup | Docker Documentation](https://docs.docker.com/get-started/)
 
@@ -76,7 +76,7 @@ for more detail commands usage, you can visit the website: [Get Started, Part 1:
 
 These Docker images are used for learning and research related to data science and machine learning. You do not need to configure a complex environment on your computer. You need almost everything are all included in the images. All you need is `docker pull` and `docker run`.
 
-[Another repository](https://github.com/AutuanLiu/Machine-Learning-on-docker) are created to submit my learning and research. It is about Machine learning, Neural Network, data science etc. You can run all code or jupyter-notes base on this Docker image.
+[Another repository](http://bit.ly/2jOp8uh) are created to submit my learning and research. It is about Machine learning, Neural Network, data science etc. You can run all code or jupyter-notes base on this Docker image.
 
 ----
 
