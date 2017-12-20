@@ -1,0 +1,5 @@
+# autuanliu
+
+script:
+    - docker image build -t ml-env:cpu -f Dockerfile .
+    - docker image build -t ml-env:gpu -f ML-GPU/Dockerfile ./ML-GPU
