@@ -4,6 +4,7 @@
 [![Ubuntu version](https://img.shields.io/badge/Ubuntu-16.04-green.svg?style=plastic)]()
 
 * CI info
+
 Docker tag | status
 --- | ---
 CPU | [![Build Status][1]][2]
