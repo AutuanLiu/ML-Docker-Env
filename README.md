@@ -3,6 +3,12 @@
 [![Docker Automated build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg?style=plastic)](https://hub.docker.com/u/autuanliu/)
 [![Ubuntu version](https://img.shields.io/badge/Ubuntu-16.04-green.svg?style=plastic)]()
 
+* CI info
+Docker tag | status
+--- | ---
+CPU | [![Build Status][1]][2]
+GPU | [![Build Status][1]][2]
+
 This is a Docker configure for machine learning and deep learning. You can use the Dockerfile to build Docker image locally or 
 pull the image I have create from [Docker Hub](https://hub.docker.com/r/autuanliu/)
 
@@ -81,3 +87,7 @@ These Docker images are used for learning and research related to data science a
 ----
 
 If you have any questions or suggestions about this reposity, you can submit your issues or email me. [autuanliu@163.com]
+
+
+[1]:https://travis-ci.org/AutuanLiu/ML-Docker-Env.svg?branch=master
+[2]:https://travis-ci.org/AutuanLiu/ML-Docker-Env
