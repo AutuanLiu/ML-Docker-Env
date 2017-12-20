@@ -1,4 +1,8 @@
 # autuanliu
+language: python
+
+python:
+    - "3.6"
 
 script:
     - docker image build -t ml-env:cpu -f Dockerfile .
