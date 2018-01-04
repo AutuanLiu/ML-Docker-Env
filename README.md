@@ -25,16 +25,16 @@ pull the image I have create from [Docker Hub](https://hub.docker.com/r/autuanli
         ```
     * GPU-Version
         ```bash
-        docker pull autuanliu/ml-docker-env-gpu`
+        docker pull autuanliu/ml-docker-env-gpu
         ```
 2. from Aliyun
     * CPU-Version
         ```bash
-        docker pull registry.cn-hangzhou.aliyuncs.com/autuanliu/ml-env-cpu`
+        docker pull registry.cn-hangzhou.aliyuncs.com/autuanliu/ml-env-cpu
         ```
     * GPU-Version
         ```bash
-        docker pull registry.cn-hangzhou.aliyuncs.com/autuanliu/ml-env-gpu`
+        docker pull registry.cn-hangzhou.aliyuncs.com/autuanliu/ml-env-gpu
         ```
 for more information about Docker, you can visit the website: [Docker - Build, Ship, and Run Any App, Anywhere](https://www.docker.com/)
 
