@@ -69,7 +69,7 @@ RUN conda install -q -y pytorch torchvision -c pytorch
 RUN pip install keras
 
 # R packages including IRKernel which gets installed globally.
-RUN conda config --system --append channels r && \
+RUN pip uninstall -y scikit-image && conda config --system --append channels r && \
     conda install -q -y \
     'rpy2=2.8*' \
     'r-base=3.3.2' \
@@ -83,6 +83,8 @@ RUN conda config --system --append channels r && \
     'r-nycflights13=0.2*' \
     'r-caret=6.0*' \
     'r-rcurl=1.95*' \
+    'r-shiny=0.14*' \
+    'r-devtools=1.12*' \
     'r-crayon=1.3*' \
     'r-randomforest=4.6*' && \
     conda clean -tipsy
