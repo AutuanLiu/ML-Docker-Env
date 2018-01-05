@@ -5,7 +5,6 @@ LABEL maintainer="autuanliu <autuanliu@163.com>"
 USER root
 
 # Define version
-ARG KERAS_VERSION=1.2.0
 ARG ANACONDA3_VERSION=5.0.1
 
 # Install some dependencies and tools
@@ -64,11 +63,10 @@ RUN pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1
 
 # Install pytorch
 # http://pytorch.org/
-# RUN conda install pytorch torchvision -c soumith
-RUN conda install -q -y pytorch torchvision -c soumith
+RUN conda install -q -y pytorch torchvision -c pytorch
 
 # Install Keras
-RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
+RUN pip install keras
 
 # R packages including IRKernel which gets installed globally.
 RUN conda config --system --append channels r && \
