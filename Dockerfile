@@ -69,25 +69,25 @@ RUN conda install -q -y pytorch torchvision -c pytorch
 RUN pip install keras
 
 # R packages including IRKernel which gets installed globally.
-RUN pip uninstall -y scikit-image && conda config --system --append channels r && \
-    conda install -q -y \
-    'rpy2=2.8*' \
-    'r-base=3.3.2' \
-    'r-irkernel=0.7*' \
-    'r-plyr=1.8*' \
-    'r-tidyverse=1.0*' \
-    'r-rmarkdown=1.2*' \
-    'r-forecast=7.3*' \
-    'r-rsqlite=1.1*' \
-    'r-reshape2=1.4*' \
-    'r-nycflights13=0.2*' \
-    'r-caret=6.0*' \
-    'r-rcurl=1.95*' \
-    'r-shiny=0.14*' \
-    'r-devtools=1.12*' \
-    'r-crayon=1.3*' \
-    'r-randomforest=4.6*' && \
-    conda clean -tipsy
+# RUN pip uninstall -y scikit-image && conda config --system --append channels r && \
+#     conda install -q -y \
+#     'rpy2=2.8*' \
+#     'r-base=3.3.2' \
+#     'r-irkernel=0.7*' \
+#     'r-plyr=1.8*' \
+#     'r-tidyverse=1.0*' \
+#     'r-rmarkdown=1.2*' \
+#     'r-forecast=7.3*' \
+#     'r-rsqlite=1.1*' \
+#     'r-reshape2=1.4*' \
+#     'r-nycflights13=0.2*' \
+#     'r-caret=6.0*' \
+#     'r-rcurl=1.95*' \
+#     'r-shiny=0.14*' \
+#     'r-devtools=1.12*' \
+#     'r-crayon=1.3*' \
+#     'r-randomforest=4.6*' && \
+#     conda clean -tipsy
 
 # Expose Ports for TensorBoard (6006), Ipython (8888)
 EXPOSE 6006 8888
