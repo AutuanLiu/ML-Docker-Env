@@ -75,7 +75,6 @@ RUN conda config --system --append channels r && \
     'r-base=3.3.2' \
     'r-irkernel=0.7*' \
     'r-plyr=1.8*' \
-    'r-devtools=1.12*' \
     'r-tidyverse=1.0*' \
     'r-rmarkdown=1.2*' \
     'r-forecast=7.3*' \
