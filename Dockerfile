@@ -1,4 +1,4 @@
-FROM ubuntu:18.10
+FROM ubuntu:19.04
 
 LABEL maintainer="autuanliu <autuanliu@163.com>"
 
